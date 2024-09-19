@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PaySwift</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- DaisyUI + TailWind CDN -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              clifford: "#da373d",
+            },
+            fontFamily: {
+              outfit: ["Outfit", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+
+    <!-- Fontawesome library -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+      integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <!-- Raw CSS -->
+    <link rel="stylesheet" href="Styles/styles.css" />
+  </head>
+  <body class="font-outfit">
+    <main>
+      <section class="md:container mx-auto my-10 lg:my-20">
+        <div
+          class="artboard w-[420px] h-full border-2 border-gray-200 rounded-lg mx-auto"
+        >
+          <div class="px-5 pt-5 flex justify-between items-center">
+            <div class="flex flex-1 gap-3 items-center">
+              <div>
+                <img src="images/payswift.png" alt="" class="w-14 h-14" />
+              </div>
+              <div class="">
+                <h1 class="font-extrabold text-lg">$45000</h1>
+                <p>Available Balance</p>
+              </div>
+            </div>
+            <div>
+              <button
+                id="btn-logout"
+                class="p-1 flex items-center justify-between rounded-lg gap-2 border-2 border-gray-200"
+              >
+                <img src="images/log-out.png" alt="" class="w-5 h-5" />
+                <h3>Log Out</h3>
+              </button>
+            </div>
+          </div>
+          <div class="divider"></div>
+          <div class="px-5 pb-5">
+            <div>
+              <div class="flex items-center gap-3 mb-2">
+                <img src="images/fire.png" class="w-5 h-5" />
+                <h1 class="font-bold text-2xl">Welcome to Payooo!</h1>
+              </div>
+              <p class="font-normal text-base text-[#08080880]">
+                Enjoy easy and convenient financial services with us. Cashout
+                charge is low and
+              </p>
+            </div>
+            <div class="mt-5 grid grid-cols-3 gap-2">
+              <!-- card - 1 -->
+              <button
+                onclick="toggleForm('add-money-form')"
+                class="p-1 flex flex-col items-center gap-2 text-[#080808B3] text-sm border-2 border-gray-100 rounded-lg"
+              >
+                <img src="images/add-money.png" alt="" class="w-10 h-10" />
+                <h1>Add Money</h1>
+              </button>
+              <!-- card - 2 -->
+              <button
+                onclick="toggleForm('cashout-form')"
+                class="p-1 flex flex-col items-center gap-2 text-[#080808B3] text-sm border-2 border-gray-100 rounded-lg"
+              >
+                <img src="images/cashout.png" alt="" class="w-10 h-10" />
+                <h1>Cashout</h1>
+              </button>
+              <!-- card - 3 -->
+              <div
+                class="p-1 flex flex-col items-center gap-2 text-[#080808B3] text-sm border-2 border-gray-100 rounded-lg"
+              >
+                <img src="images/transfer-money.png" alt="" class="w-10 h-10" />
+                <h1>Transfer Money</h1>
+              </div>
+              <!-- card - 4 -->
+              <div
+                class="p-1 flex flex-col items-center gap-2 text-[#080808B3] text-sm border-2 border-gray-100 rounded-lg"
+              >
+                <img
+                  src="images/mobile-recharge.png"
+                  alt=""
+                  class="w-10 h-10"
+                />
+                <h1>Mobile Recharge</h1>
+              </div>
+              <!-- card - 5 -->
+              <div
+                class="p-1 flex flex-col items-center gap-2 text-[#080808B3] text-sm border-2 border-gray-100 rounded-lg"
+              >
+                <img src="images/pay-bill.png" alt="" class="w-10 h-10" />
+                <h1>Pay Bill</h1>
+              </div>
+              <!-- card - 6 -->
+              <div
+                class="p-1 flex flex-col items-center gap-2 text-[#080808B3] text-sm border-2 border-gray-100 rounded-lg"
+              >
+                <img src="images/transaction.png" alt="" class="w-10 h-10" />
+                <h1>Transaction</h1>
+              </div>
+            </div>
+          </div>
+
+          <!-- Forms (initially hidden) -->
+          <div id="add-money-form" class="p-5 bg-gray-100 rounded-lg hidden">
+            <h4 class="text-lg font-bold mb-2">Add Money</h4>
+            <form class="bg-white rounded-lg p-3">
+              <label for="account" class="font-medium text-[#080808B3]"
+                >Select Bank</label
+              >
+              <select
+                name=""
+                id=""
+                class="w-full p-2 mt-2 rounded-lg mb-2 border-2 border-gray-100"
+              >
+                <option value="" disabled selected>Select a bank</option>
+                <option value="">Dutch Bangla Bank</option>
+                <option value="">Islami Bank</option>
+                <option value="">Sonali Bank</option>
+                <option value="">Rupali Bank</option>
+                <option value="">Agrani Bank</option>
+              </select>
+              <label for="account" class="font-medium text-[#080808B3]"
+                >Bank Account Number</label
+              >
+              <input
+                type="text"
+                name="account"
+                maxlength="11"
+                placeholder="Enter 11 digit account number"
+                class="w-full p-2 my-2 border-2 border-gray-100 rounded-lg"
+                required
+              />
+
+              <label for="amount" class="font-medium text-[#080808B3]"
+                >Amount to Add</label
+              >
+              <input
+                type="number"
+                name="amount"
+                placeholder="Enter amount to add"
+                class="w-full p-2 my-2 border-2 border-gray-100 rounded-lg hide-number-arrows"
+                required
+              />
+
+              <label for="pin" class="font-medium text-[#080808B3]"
+                >Pin Number</label
+              >
+              <div
+                class="input flex justify-between items-center p-2 my-2 border-2 border-gray-100"
+              >
+                <input
+                  type="password"
+                  placeholder="Enter 4 Digit Pin"
+                  id="password-add-money"
+                  inputmode="numeric"
+                  pattern="[0-9]*"
+                  class="font-[300] text-base"
+                  autocomplete="off"
+                  required
+                />
+                <!-- id="toggleIcon" -->
+                <button class="mr-3">
+                  <img
+                    id="toggleIcon-add-money"
+                    onclick="togglePassword(event, 'password-add-money', 'toggleIcon-add-money')"
+                    src="images/show.png"
+                    alt=""
+                    class="w-5 h-5"
+                  />
+                </button>
+              </div>
+              <button
+                class="w-full mt-4 bg-blue-500 text-white py-2 rounded-lg"
+              >
+                Add Money
+              </button>
+            </form>
+          </div>
+
+          <div id="cashout-form" class="p-5 hidden bg-gray-100 rounded-lg">
+            <h4 class="text-lg font-bold">Cashout</h4>
+            <form class="bg-white p-3 mt-2 rounded-lg">
+              <h2 class="font-medium text-[#080808B3]">Agent Number</h2>
+              <input
+                type="number"
+                class="w-full p-2 my-2 border-2 border-gray-100 rounded-lg hide-number-arrows"
+                placeholder="Enter 11 digit number"
+                required
+              />
+              <h2 class="font-medium text-[#080808B3]">Amount</h2>
+              <input
+                type="number"
+                class="w-full p-2 my-2 border-2 border-gray-100 rounded-lg hide-number-arrows"
+                placeholder="Enter amount to withdraw"
+                required
+              />
+              <h2 class="font-medium text-[#080808B3]">Pin Number</h2>
+              <div
+                class="input flex justify-between items-center p-2 my-2 border-2 border-gray-100"
+              >
+                <input
+                  type="password"
+                  placeholder="Enter 4 Digit Pin"
+                  id="password-cashout"
+                  inputmode="numeric"
+                  pattern="[0-9]*"
+                  class="font-[300] text-base"
+                  autocomplete="off"
+                  required
+                />
+                <!-- id="toggleIcon" -->
+                <button class="mr-3">
+                  <img
+                    id="toggleIcon-cashout"
+                    onclick="togglePassword(event, 'password-cashout', 'toggleIcon-cashout')"
+                    src="images/show.png"
+                    alt=""
+                    class="w-5 h-5"
+                  />
+                </button>
+              </div>
+              <button
+                class="w-full mt-4 bg-blue-500 text-white py-2 rounded-lg"
+              >
+                Cashout
+              </button>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Scripts-->
+    <script src="script/forms.js"></script>
+    <script src="script/authentication.js"></script>
+  </body>
+</html>

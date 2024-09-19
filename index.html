@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PaySwift</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- DaisyUI + TailWind CDN -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              clifford: "#da373d",
+            },
+            fontFamily: {
+              outfit: ["Outfit", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+
+    <!-- Fontawesome library -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+      integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <!-- Raw CSS -->
+    <link rel="stylesheet" href="Styles/styles.css" />
+  </head>
+  <body class="font-outfit">
+    <main>
+      <section class="md:container mx-auto my-10 lg:my-20">
+        <div class="hero">
+          <div class="relative hero-content flex-col">
+            <div
+              class="absolute top-0 flex flex-col justify-center items-center"
+            >
+              <div class="relative">
+                <img src="images/login-bg.png" />
+                <img
+                  src="images/payswift.png"
+                  class="w-[30%] absolute top-5 right-[35%]"
+                />
+              </div>
+            </div>
+            <div class="card bg-base-100 w-96 shrink-0 shadow-2xl mt-28">
+              <form class="card-body">
+                <div class="form-control mb-4">
+                  <input
+                    type="number"
+                    placeholder="Enter your number"
+                    id="phone-number"
+                    class="input bg-gray-200 font-[300] hide-number-arrows text-base"
+                    required
+                  />
+                </div>
+                <div class="form-control">
+                  <div
+                    class="input flex justify-between items-center bg-gray-200"
+                  >
+                    <input
+                      type="password"
+                      placeholder="Enter 4 Digit Pin"
+                      id="password"
+                      inputmode="numeric"
+                      pattern="[0-9]*"
+                      class="bg-gray-200 font-[300] text-base"
+                      autocomplete="off"
+                      required
+                    />
+                    <!-- id="toggleIcon" -->
+                    <button class="mr-3">
+                      <img
+                        id="toggleIcon"
+                        onclick="togglePassword(event, 'password', 'toggleIcon')"
+                        src="images/show.png"
+                        alt=""
+                        class="w-5 h-5"
+                      />
+                    </button>
+                  </div>
+                  <label class="label mt-2">
+                    <a href="#" class="label-text-alt link link-hover text-base"
+                      >Forgot password?</a
+                    >
+                  </label>
+                </div>
+                <div class="form-control">
+                  <button id="btn-login" class="btn bg-[#0874F2] text-white">
+                    Login
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Scripts-->
+    <script src="script/log-in.js"></script>
+    <script src="script/authentication.js"></script>
+  </body>
+</html>
