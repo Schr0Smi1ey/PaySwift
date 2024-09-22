@@ -59,7 +59,9 @@
                 <img src="images/payswift.png" alt="" class="w-14 h-14" />
               </div>
               <div class="">
-                <h1 class="font-extrabold text-lg">$45000</h1>
+                <h1 class="font-extrabold text-lg">
+                  $<span id="account-balance">45000</span>
+                </h1>
                 <p>Available Balance</p>
               </div>
             </div>
@@ -81,8 +83,8 @@
                 <h1 class="font-bold text-2xl">Welcome to PaySwift!</h1>
               </div>
               <p class="font-normal text-base text-[#08080880]">
-                Enjoy easy and convenient financial services with us. Cashout
-                charge is low and
+                Experience hassle-free financial services with us. Enjoy low
+                cashout charges and seamless transactions.
               </p>
             </div>
             <div class="mt-5 grid grid-cols-3 gap-2">
@@ -103,14 +105,16 @@
                 <h1>Cashout</h1>
               </button>
               <!-- card - 3 -->
-              <div
+              <button
+                onclick="toggleForm('transfer-money-form')"
                 class="p-1 flex flex-col items-center gap-2 text-[#080808B3] text-sm border-2 border-gray-100 rounded-lg"
               >
                 <img src="images/transfer-money.png" alt="" class="w-10 h-10" />
                 <h1>Transfer Money</h1>
-              </div>
+              </button>
               <!-- card - 4 -->
-              <div
+              <button
+                onclick="toggleForm('recharge-money-form')"
                 class="p-1 flex flex-col items-center gap-2 text-[#080808B3] text-sm border-2 border-gray-100 rounded-lg"
               >
                 <img
@@ -119,7 +123,7 @@
                   class="w-10 h-10"
                 />
                 <h1>Mobile Recharge</h1>
-              </div>
+              </button>
               <!-- card - 5 -->
               <div
                 class="p-1 flex flex-col items-center gap-2 text-[#080808B3] text-sm border-2 border-gray-100 rounded-lg"
@@ -128,12 +132,13 @@
                 <h1>Pay Bill</h1>
               </div>
               <!-- card - 6 -->
-              <div
+              <button
+                onclick="toggleForm('transaction-form')"
                 class="p-1 flex flex-col items-center gap-2 text-[#080808B3] text-sm border-2 border-gray-100 rounded-lg"
               >
                 <img src="images/transaction.png" alt="" class="w-10 h-10" />
                 <h1>Transaction</h1>
-              </div>
+              </button>
             </div>
           </div>
 
@@ -146,15 +151,15 @@
               >
               <select
                 name=""
-                id=""
+                id="select-bank"
                 class="w-full p-2 mt-2 rounded-lg mb-2 border-2 border-gray-100"
               >
                 <option value="" disabled selected>Select a bank</option>
-                <option value="">Dutch Bangla Bank</option>
-                <option value="">Islami Bank</option>
-                <option value="">Sonali Bank</option>
-                <option value="">Rupali Bank</option>
-                <option value="">Agrani Bank</option>
+                <option value="1">Dutch Bangla Bank</option>
+                <option value="2">Islami Bank</option>
+                <option value="3">Sonali Bank</option>
+                <option value="4">Rupali Bank</option>
+                <option value="5">Agrani Bank</option>
               </select>
               <label for="account" class="font-medium text-[#080808B3]"
                 >Bank Account Number</label
@@ -163,6 +168,7 @@
                 type="text"
                 name="account"
                 maxlength="11"
+                id="account-cash-in"
                 placeholder="Enter 11 digit account number"
                 class="w-full p-2 my-2 border-2 border-gray-100 rounded-lg"
                 required
@@ -175,6 +181,7 @@
                 type="number"
                 name="amount"
                 placeholder="Enter amount to add"
+                id="amount-cash-in"
                 class="w-full p-2 my-2 border-2 border-gray-100 rounded-lg hide-number-arrows"
                 required
               />
@@ -188,7 +195,7 @@
                 <input
                   type="password"
                   placeholder="Enter 4 Digit Pin"
-                  id="password-add-money"
+                  id="password-cash-in"
                   inputmode="numeric"
                   pattern="[0-9]*"
                   class="font-[300] text-base"
@@ -207,6 +214,7 @@
                 </button>
               </div>
               <button
+                onclick="operationPerformer (event, 'account-cash-in', 'amount-cash-in', 'password-cash-in')"
                 class="w-full mt-4 bg-blue-500 text-white py-2 rounded-lg"
               >
                 Add Money
@@ -219,6 +227,7 @@
             <form class="bg-white p-3 mt-2 rounded-lg">
               <h2 class="font-medium text-[#080808B3]">Agent Number</h2>
               <input
+                id="account-cashout"
                 type="number"
                 class="w-full p-2 my-2 border-2 border-gray-100 rounded-lg hide-number-arrows"
                 placeholder="Enter 11 digit number"
@@ -227,8 +236,9 @@
               <h2 class="font-medium text-[#080808B3]">Amount</h2>
               <input
                 type="number"
+                id="amount-cashout"
                 class="w-full p-2 my-2 border-2 border-gray-100 rounded-lg hide-number-arrows"
-                placeholder="Enter amount to withdraw"
+                placeholder="Enter amount"
                 required
               />
               <h2 class="font-medium text-[#080808B3]">Pin Number</h2>
@@ -257,18 +267,139 @@
                 </button>
               </div>
               <button
+                onclick="operationPerformer (event, 'account-cashout', 'amount-cashout', 'password-cashout')"
                 class="w-full mt-4 bg-blue-500 text-white py-2 rounded-lg"
               >
                 Cashout
               </button>
             </form>
           </div>
+
+          <div
+            id="transfer-money-form"
+            class="p-5 hidden bg-gray-100 rounded-lg"
+          >
+            <h4 class="text-lg font-bold">Cashout</h4>
+            <form class="bg-white p-3 mt-2 rounded-lg">
+              <h2 class="font-medium text-[#080808B3]">Account Number</h2>
+              <input
+                type="number"
+                id="account-transfer-money"
+                class="w-full p-2 my-2 border-2 border-gray-100 rounded-lg hide-number-arrows"
+                placeholder="Enter 11 digit account number to transfer"
+                required
+              />
+              <h2 class="font-medium text-[#080808B3]">Amount</h2>
+              <input
+                type="number"
+                id="amount-transfer-money"
+                class="w-full p-2 my-2 border-2 border-gray-100 rounded-lg hide-number-arrows"
+                placeholder="Enter amount"
+                required
+              />
+              <h2 class="font-medium text-[#080808B3]">Pin Number</h2>
+              <div
+                class="input flex justify-between items-center p-2 my-2 border-2 border-gray-100"
+              >
+                <input
+                  type="password"
+                  id="password-transfer-money"
+                  placeholder="Enter 4 Digit Pin"
+                  inputmode="numeric"
+                  pattern="[0-9]*"
+                  class="font-[300] text-base"
+                  autocomplete="off"
+                  required
+                />
+                <!-- id="toggleIcon" -->
+                <button class="mr-3">
+                  <img
+                    id="toggleIcon-transfer-money"
+                    onclick="togglePassword(event, 'password-transfer-money', 'toggleIcon-transfer-money')"
+                    src="images/show.png"
+                    alt=""
+                    class="w-5 h-5"
+                  />
+                </button>
+              </div>
+              <button
+                onclick="operationPerformer(event, 'account-transfer-money', 'amount-transfer-money', 'password-transfer-money')"
+                id="btn-transfer-money"
+                class="w-full mt-4 bg-blue-500 text-white py-2 rounded-lg"
+              >
+                Transfer Money
+              </button>
+            </form>
+          </div>
+
+          <div
+            id="recharge-money-form"
+            class="p-5 hidden bg-gray-100 rounded-lg"
+          >
+            <h4 class="text-lg font-bold">Cashout</h4>
+            <form class="bg-white p-3 mt-2 rounded-lg">
+              <h2 class="font-medium text-[#080808B3]">Account Number</h2>
+              <input
+                type="number"
+                id="account-recharge-money"
+                class="w-full p-2 my-2 border-2 border-gray-100 rounded-lg hide-number-arrows"
+                placeholder="Enter 11 digit account number to recharge"
+                required
+              />
+              <h2 class="font-medium text-[#080808B3]">Amount</h2>
+              <input
+                type="number"
+                id="amount-recharge-money"
+                class="w-full p-2 my-2 border-2 border-gray-100 rounded-lg hide-number-arrows"
+                placeholder="Enter amount"
+                required
+              />
+              <h2 class="font-medium text-[#080808B3]">Pin Number</h2>
+              <div
+                class="input flex justify-between items-center p-2 my-2 border-2 border-gray-100"
+              >
+                <input
+                  type="password"
+                  id="password-recharge-money"
+                  placeholder="Enter 4 Digit Pin"
+                  inputmode="numeric"
+                  pattern="[0-9]*"
+                  class="font-[300] text-base"
+                  autocomplete="off"
+                  required
+                />
+                <!-- id="toggleIcon" -->
+                <button class="mr-3">
+                  <img
+                    id="toggleIcon-recharge-money"
+                    onclick="togglePassword(event, 'password-recharge-money', 'toggleIcon-recharge-money')"
+                    src="images/show.png"
+                    alt=""
+                    class="w-5 h-5"
+                  />
+                </button>
+              </div>
+              <button
+                onclick="operationPerformer(event, 'account-recharge-money', 'amount-recharge-money', 'password-recharge-money')"
+                id="btn-recharge-money"
+                class="w-full mt-4 bg-blue-500 text-white py-2 rounded-lg"
+              >
+                Recharge
+              </button>
+            </form>
+          </div>
+
+          <div id="transaction-form" class="p-5 hidden bg-gray-100 rounded-lg">
+            <h4 id="no-transaction-history" class="text-lg font-bold">
+              No transaction history yet!
+            </h4>
+          </div>
         </div>
       </section>
     </main>
 
     <!-- Scripts-->
-    <script src="script/forms.js"></script>
+    <script src="script/home.js"></script>
     <script src="script/authentication.js"></script>
   </body>
 </html>

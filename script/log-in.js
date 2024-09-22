@@ -13,9 +13,3 @@ document.getElementById('btn-login').addEventListener('click', function (event) 
     }
 })
 
-// document.getElementById('btn-toggle').addEventListener('click', function (event) {
-//     event.preventDefault();
-
-   
-// })
-
