@@ -5,6 +5,7 @@ document.getElementById('btn-login').addEventListener('click', function (event) 
     
     // Temporary validation
     if (phoneNumber == '1234' && password == '1234') {
+        console.log('Login successful');
         window.location.href = '/PaySwift/home.html';
     }
     else {
