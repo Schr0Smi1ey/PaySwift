@@ -12,7 +12,7 @@ function toggleForm(formId) {
 // Log-out button functionality
 document.getElementById('btn-logout').addEventListener('click', function (event) {
     event.preventDefault();
-    window.location.href = 'PaySwift/';
+    window.location.href = 'PaySwift/index.html';
 })
 
 class counter{
