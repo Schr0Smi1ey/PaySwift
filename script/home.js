@@ -17,7 +17,6 @@ document.getElementById('btn-logout').addEventListener('click', function (event)
 
 class counter{
     static ser = 0;
-
     static getCounter() {
         return ++this.ser;
     }
