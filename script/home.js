@@ -13,7 +13,7 @@ function toggleForm(formId) {
 document.getElementById('btn-logout').addEventListener('click', function (event) {
     event.preventDefault();
     console.log('succesfull');
-    window.location.href = '';
+    window.location.href = '/index.html';
 })
 
 class counter{
