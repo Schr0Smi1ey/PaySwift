@@ -12,6 +12,7 @@ function toggleForm(formId) {
 // Log-out button functionality
 document.getElementById('btn-logout').addEventListener('click', function (event) {
     event.preventDefault();
+    console.log('succesfull');
     window.location.href = '';
 })
 
